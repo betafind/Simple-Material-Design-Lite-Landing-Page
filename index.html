@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Prevent unnecessary re-admission of recently discharged patients.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Material Design Lite Landing Page</title>
+    <!-- Firebase Script  -->
+    <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+
+    <!-- Material Design Lite  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="material.indigo-pink.min.css">
+    <script defer src="material.min.js"></script>
+
+    <!-- Local Style  -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+
+    <div class="demo-ribbon"></div>
+    <main class="demo-main mdl-layout__content">
+
+      <div class="demo-container mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="margin-bottom: 0px;">
+          <!-- Two cards with a title card and small content and/or youtube video -->
+          <h3>Main Title</h3>
+          <h4>Subtitle</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan diam ac tincidunt feugiat. Aenean elementum pellentesque dui, sit amet laoreet risus efficitur vitae. Donec eu molestie lorem, vitae dapibus ipsum. Ut suscipit malesuada odio, vel luctus dui. Ut sed mi suscipit, pretium sem et, dapibus mi. Pellentesque rutrum gravida elit a bibendum. Donec pretium aliquam mauris in tincidunt. In vel rutrum augue. Cras dapibus aliquam tellus, non lobortis nunc porttitor a. Aenean magna nulla, accumsan in sagittis non, finibus ac erat. Maecenas a nisi tortor.</p>
+          <p>Vivamus sem risus, rutrum quis tortor sed, dignissim ultrices metus. Morbi sed ipsum enim. In ac elit nunc. Etiam diam sem, rhoncus egestas mattis vel, placerat non nisi. Vestibulum id facilisis dui, sit amet laoreet sem. Phasellus libero risus, consectetur id pretium vel, pretium quis leo. Integer lacus neque, pulvinar id pellentesque auctor, venenatis vel tellus. Duis mollis lacus quis rutrum luctus. </p>
+          <div><iframe width="560" height="315" src="https://www.youtube.com/embed/rrT6v5sOwJg" frameborder="0" allowfullscreen></iframe></div>
+      </div>
+            </div>
+
+      <div class="demo-container mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+    <div class="contact">
+      <!-- For one card layout
+      <h3>Talk Marinade</h3>
+      <h4>Prevent unnecessary re-admission of recently discharged patients.</h4> -->
+    <p id="contact-success" class="text-success lead"></p>
+    <p id="contact-error" class="text-danger lead"></p>
+    <form class="contact-form" id="contact-form" role="form" onsubmit="return sendMessage(this)">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" name="firstName" id="fname" type="text" required>
+          <label class="mdl-textfield__label" for="fname">First Name</label>
+        </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" name="lastName" id="lname" type="text" required>
+          <label class="mdl-textfield__label" for="lname">Last Name</label>
+        </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" name="phoneNumber" id="pnumber" type="tel" required>
+          <label class="mdl-textfield__label" for="pnumber">Phone Number</label>
+        </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" name="email" id="email" type="email" required>
+          <label class="mdl-textfield__label" for="email">Email</label>
+        </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="organization" name="organization" required>
+          <label class="mdl-textfield__label" for="organization">Company/Organization</label>
+        </div>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+          <input class="mdl-checkbox__input" type="checkbox" name="judge" id="checkbox-2">
+          <span class="mdl-checkbox__label">I am a More Disruption Please Challenge Judge</span>
+        </label><br><br>
+        <button class="mdl-button mdl-js-button mdl-button--raised" id="send-button" type="submit">
+              Send Message
+            </button>
+    </form>
+</div>
+
+</div>
+      </div>
+
+
+    </div>
+
+  </main>
+</div>
+</div>
+<script type="text/javascript">
+// Send message
+var contactForm = document.getElementById('contact-form');
+var contactSuccess = document.getElementById('contact-success');
+var contactError = document.getElementById('contact-error');
+var sendBtn = document.getElementById('send-button');
+var onMessageComplete = function(error) {
+sendBtn.disabled = false;
+if (error) {
+  contactError.innerHTML = "Worst Day Ever! Something Broke. Give us some time as we try to fix whatever it is that broke.";
+} else {
+  contactSuccess.innerHTML = "Hip Hip Hooray!! Your information has been added to the list.";
+  // hide the form
+  contactForm.style.display = "none";
+}
+};
+function sendMessage(formObj) {
+  // Store emails to firebase
+  var myFirebaseRef = new Firebase("https://yourappname.firebaseio.com/messages");
+  myFirebaseRef.push({
+    firstName: formObj.firstName.value,
+    lastName: formObj.lastName.value,
+    phoneNumber: formObj.phoneNumber.value,
+    email: formObj.email.value,
+    organization: formObj.organization.value,
+    judge: formObj.judge.checked
+  }, onMessageComplete);
+  sendBtn.disabled = true;
+  return false;
+}
+</script>
+
+  </body>
+</html>
